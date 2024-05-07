@@ -150,13 +150,8 @@ export class KickCommand extends Command {
     await member.kick();
 
     info.success = true;
-    info.message = `Successfully kickned ${user.tag} from the server!`;
+    info.message = `Successfully kicked ${user.tag} from the server!`;
 
     return info;
-
-
-
-
   }
-
 }

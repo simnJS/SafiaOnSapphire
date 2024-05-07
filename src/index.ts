@@ -1,7 +1,10 @@
 import './lib/setup';
+import '@sapphire/plugin-logger/register';
 
 import { LogLevel, SapphireClient } from '@sapphire/framework';
 import { GatewayIntentBits } from 'discord.js';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const client = new SapphireClient({
 	defaultPrefix: '!',
@@ -16,7 +19,7 @@ const client = new SapphireClient({
 const main = async () => {
 	try {
 		client.logger.info('Logging in');
-		await client.login();
+		await client.login(process.env.DISCORD_TOKEN);
 		client.logger.info('logged in');
 	} catch (error) {
 		client.logger.fatal(error);

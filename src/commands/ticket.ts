@@ -34,12 +34,13 @@ export class TicketCommand extends Subcommand  {
 
   public async chatImputCreate(interaction: Subcommand.ChatInputCommandInteraction) {
     await interaction.reply('Ticket created');
+    // We will question the moderator about : Embed title, description, color, modal category, etc.
+
+    
   }
 
   public async chatImputDelete(interaction: Subcommand.ChatInputCommandInteraction) {
     await interaction.reply('Ticket deleted');
   }
-
-
-
 }
+

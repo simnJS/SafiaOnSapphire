@@ -35,6 +35,9 @@ importers:
       discord.js:
         specifier: ^14.15.2
         version: 14.15.2
+      dotenv:
+        specifier: ^16.4.5
+        version: 16.4.5
     devDependencies:
       '@sapphire/cli':
         specifier: ^1.9.3
