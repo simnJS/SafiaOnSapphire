@@ -1,12 +1,15 @@
 import './lib/setup';
 import '@sapphire/plugin-logger/register';
 
-import { LogLevel, SapphireClient } from '@sapphire/framework';
+import { ApplicationCommandRegistries, LogLevel, RegisterBehavior, SapphireClient } from '@sapphire/framework';
+ApplicationCommandRegistries.setDefaultBehaviorWhenNotIdentical(RegisterBehavior.BulkOverwrite);
 import { GatewayIntentBits } from 'discord.js';
 import dotenv from 'dotenv';
 dotenv.config();
 
+
 const client = new SapphireClient({
+  
 	defaultPrefix: '!',
 	caseInsensitiveCommands: true,
 	logger: {

@@ -2,6 +2,7 @@ import { ApplyOptions } from '@sapphire/decorators';
 import { Listener } from '@sapphire/framework';
 import type { StoreRegistryValue } from '@sapphire/pieces';
 import { blue, gray, green, magenta, magentaBright, white, yellow } from 'colorette';
+import GuildService from '../lib/database/guildService';
 
 const dev = process.env.NODE_ENV !== 'production';
 
@@ -12,6 +13,10 @@ export class UserEvent extends Listener {
 	public override run() {
 		this.printBanner();
 		this.printStoreDebugInformation();
+
+    for (const guild of this.container.client.guilds.cache.values()) {
+      GuildService.UpdateOrCreateGuildWithAllUsers(guild);
+    }
 	}
 
 	private printBanner() {

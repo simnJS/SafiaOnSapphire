@@ -1,0 +1,40 @@
+// schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Bot {
+  id                   String   @id @default(cuid())
+  commandExecutedCount Int      @default(0)
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+}
+
+model Guild {
+  id    String @id @db.VarChar(191)
+  name  String
+  users User[]
+  commandsExecutedCount Int @default(0)
+}
+
+model User {
+  id           String        @id @db.VarChar(191)
+  username     String
+  
+  anniversary  Anniversary[]
+  guildId      String        @db.VarChar(191)
+  guild        Guild         @relation(fields: [guildId], references: [id])
+}
+
+model Anniversary {
+  id     Int      @id @default(autoincrement())
+  date   DateTime
+  userId String   @unique @db.VarChar(191)
+  user   User     @relation(fields: [userId], references: [id])
+}
